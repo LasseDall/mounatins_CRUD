@@ -20,4 +20,4 @@ const mountains = [
   new Mountain(10, 'Annapurna', 8091)
 ];
   
-module.exports = mountains;
+module.exports = Mountain;
