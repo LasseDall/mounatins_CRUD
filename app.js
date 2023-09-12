@@ -29,7 +29,7 @@ app.get("/:id", (req, res) => {
     const mountain = mountains.find((mountain) => mountain.id === mountianId);
     
     if(!mountianId) {
-        res.send({ error: "Id is not a number"})
+        res.status(400).send({ error: "Id is not a number"})
     } 
 
     if(mountain) {
@@ -37,7 +37,7 @@ app.get("/:id", (req, res) => {
     } else if (!id) {
         res.send({ error: `Id is not a number` })
     } else {
-        res.send({ data: `Mountain with id: ${mountianId} does not exist` });
+        res.status(404).send({ error: `Mountain with id: ${mountianId} does not exist` });
     }  
 });
 
@@ -58,7 +58,7 @@ app.patch("/:id", (req, res) => {
     const mountainId = Number(req.params.id);
     
     if(!mountainId) {
-        res.send({ error: "Id is not a number"})
+        res.status(400).send({ error: "Id is not a number"})
     } 
 
     const mountain = mountains.find((mountain) => mountain.id === mountainId);
@@ -74,7 +74,7 @@ app.patch("/:id", (req, res) => {
         }
         res.send({ data: mountain })
     } else {
-        res.send({ data: `Mountain with id: ${mountainId} does not exist` });
+        res.status(404).send({ error: `Mountain with id: ${mountainId} does not exist` });
     }
 });
 
@@ -82,7 +82,7 @@ app.put("/:id", (req, res) => {
     const mountainId = Number(req.params.id);
     
     if(!mountainId) {
-        res.send({ error: "Id is not a number"})
+        res.status(400).send({ error: "Id is not a number"})
     } 
 
     const mountain = mountains.find((mountain) => mountain.id === mountainId);
@@ -94,10 +94,10 @@ app.put("/:id", (req, res) => {
         
         res.send({ data: mountain });
         } else {
-            res.send({ error: "Name or height is missing."})
+            res.status(404).send({ error: "Name or height is missing."})
         }
     } else {
-        res.send({ data: `Mountain with id: ${mountainId} does not exist` });
+        res.status(404).send({ error: `Mountain with id: ${mountainId} does not exist` });
     }
 });
 
@@ -105,7 +105,7 @@ app.delete("/:id", (req, res) => {
     const mountainId = Number(req.params.id);
     
     if(!mountainId) {
-        res.send({ error: "Id is not a number"})
+        res.status(400).send({ error: "Id is not a number"})
     } 
 
     const indexToDelete = mountains.findIndex((mountain) => mountain.id === mountainId);
@@ -115,7 +115,7 @@ app.delete("/:id", (req, res) => {
 
         res.send({ data: `Mountain with id: ${mountainId} was deleted` });
     } else {
-        res.send({ data: `Mountain with id: ${mountainId} does not exist` });
+        res.status(404).send({ error: `Mountain with id: ${mountainId} does not exist` });
     }
 
 });
